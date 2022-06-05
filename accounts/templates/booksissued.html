@@ -1,0 +1,57 @@
+{%include 'heading.html'%}
+
+{%load static%}
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+</head>
+
+<body>
+    {%if booksissued%}
+    <h4 align="center">Books Issued</h4>
+    <table border="1" class="table">
+        <tr>
+            <th>Sr. No.</th>
+            <th>Book Id</th>
+            <th>Book Name</th>
+            <th>Author Name</th>
+            <th>Publish Date</th>
+            <th>Issued Date</th>
+            <th>Returned Date</th>
+            <th>Action</th>
+        </tr>
+        {%for j in booksissued%}
+        
+        <tr>
+       
+            <td>{{forloop.counter}}</td>
+            <td>{{j.book.bookid}}</td>
+            <td>{{j.book.bookname}}</td>
+            <td>{{j.book.book_author}}</td>
+            <td>{{j.book.publish_date}}</td>
+
+
+            
+            <td>{{j.issuedate}}</td>
+            <td>{{j.returndate}}</td>
+            <td><a href="returnbook/{{j.id}}" class="btn btn-primary" name="return">Return</a></td>
+           
+
+        </tr>
+        {%endfor%}
+
+
+
+        {%else%}
+        <h4 align="center" style="margin-top: 10px;">No Book Issued..</h4>
+        {%endif%}
+
+    </table>
+</body>
+
+</html>

@@ -1,0 +1,58 @@
+{%include 'heading.html'%}
+{%load static%}
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{%static 'css/style.css'%}">
+
+</head>
+
+<body>
+    {%block body%}
+
+
+    {%if bookdetails%}
+    {%for i in bookdetails%}
+
+    <div class="card mb-3" style="max-width: 90%; margin-left: 5%; margin-right: 5%; margin-top: 2%;">
+        <div class="row g-0">
+            <div class="col-md-4">
+                <img src="{{i.book_image.url}}" class="img-fluid rounded-start" alt="No Image Available"
+                    style="width:450px; height:600px; text-align: center;">
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h3 class="card-title" name="bookname">{{i.bookname}}</h3>
+                    <ul class="list-group list-group-flush">
+                        
+                        <li class="list-group-item"><b>Book ID: </b>{{i.bookid}}</li>
+                        <li class="list-group-item"><b>Author Name:</b> {{i.book_author}}</li>
+                        <li class="list-group-item"><b>Published On: </b>{{i.publish_date}}</li>
+                        <form method="POST" action="/bookissue/{{i.id}}">
+
+                            {%csrf_token%}
+                            <input type="hidden" value="{{i.id}}" name="bid">
+                        <div class="card-body">
+                            <input type="submit" class="btn btn-primary" value="Issue Book">
+                            <!--<a href="bookissue/{{i.id}}" class="btn btn-primary">Issue Book</a>-->
+                            <hr>
+                        </div>
+                    </form>
+                    </ul>
+                    <h5 style="margin-left: 10px;">Description:</h5>
+                    <p class="card-text" style="margin-left: 15px;">{{i.book_description}}</p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    {%endfor%}
+    {%endif%}
+    {%endblock%}
+</body>
+
+</html>

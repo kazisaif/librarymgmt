@@ -1,0 +1,45 @@
+{%include 'heading.html'%}
+{%load static%}
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{%static 'css/style.css'%}">
+
+</head>
+
+<body>
+    <form method="POST" enctype="multipart/form-data">
+
+        {%if messages%}
+        {%for i in messages%}
+        <h6 class="{{i.tags}}">{{i}}</h6>
+        {%endfor%}
+        {%endif%}
+        {%csrf_token%}
+
+        <table border="1" class="table table-striped">
+            <tr>
+                <td colspan="2" style="text-align: center;">
+                    <h3>Update Book</h3>
+                </td>
+            </tr>
+
+            {{form.as_table}}
+            <tr>
+                <td align="right"></td>
+
+                <td><input type="submit" value="Update" class="btn btn-primary">
+                    <input type="reset" value="Clear" class="btn btn-secondary">
+                </td>
+            </tr>
+        </table>
+    </form>
+
+
+</body>
+
+</html>

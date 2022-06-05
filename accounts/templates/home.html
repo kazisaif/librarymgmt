@@ -1,0 +1,95 @@
+{%include 'heading.html'%}
+{%load static%}
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+</head>
+
+<body>
+  {%csrf_token%}
+  {%if user.is_authenticated%}
+  {%if blist%}
+  {%for i in blist%}
+
+
+  <div class="card mb-2"
+    style="margin-left:1%; margin-top: 1%; position: relative; display:inline-block; max-width: 450px; min-width: 450px; min-height: 250px; max-height: 250px; border: 1px solid chocolate;">
+    <div class="row g-0">
+      <div class="col-md-4">
+        <img src="{{i.book_image.url}}" class="img-fluid rounded-start" alt="No Image Available"
+          style="height:200px; min-width:150px; max-width:150px; margin-left: 5px; margin-top: 5px;"><br>
+
+      </div>
+      <div class="col-md-8" style="display: inline-block;">
+        <div class="card-body">
+          <h5 class="card-title">{{i.bookname}}</h5>
+          <hr>
+          <p class="card-text" style="max-height: 60px; min-height: 60px; font-size: medium;">{{i.book_description|truncatewords:15}}</p>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item" style="min-height: 10px; max-height: 10px;"><b>Author Name:</b> {{i.book_author}}</li>
+          </ul>
+        </div>
+
+      </div>
+      <div class="card-footer" style="margin-top: 5px;">
+        <small class="text-muted">Published on: {{i.publish_date}}</small>
+        <a href="bookdetails/{{i.id}}" style="float:right; font-size: 15px;">View full details...</a>
+      </div>
+    </div>
+
+  </div>
+
+
+
+
+  <!--
+
+<div class="row row-cols-1 row-cols-md-3 g-5" style="margin-left: 10px;">
+<div class="card mb-3" style="max-width: 540px;">
+  <div class="row g-0">
+    <div class="col-md-4">
+      <img src="{{i.book_image.url}}" class="card-img img-fluid rounded-start" alt="No Image" style="width:400px">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title">{{i.bookname}}</h5>
+        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+  <div class="row row-cols-1 row-cols-md-4 g-5" style="margin-left: 10px;">
+    <div class="col">
+      <div class="card h-100">
+        <img src="{{i.book_image.url}}" class="card-img-top" alt="No Image" style="height: 300px;">
+        <div class="card-body">
+          <h5 class="card-title">{{i.bookname}}</h5>
+          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+        </div>
+        <div class="card-footer">
+          <small class="text-muted">Last updated 3 mins ago</small>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+  -->
+  {%endfor%}
+  {%else%}
+  <h4>No book Found...</h4>
+  {%endif%}
+  {%else%}
+  <h4 align="center" style="margin-top: 2%;">Please <a href="/login">login</a> to Access this Page</h4>
+  {%endif%}
+
+
+</body>
+
+</html>

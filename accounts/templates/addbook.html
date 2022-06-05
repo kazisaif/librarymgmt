@@ -1,0 +1,80 @@
+{%include 'heading.html'%}
+{%load static%}
+<!doctype html>
+<html lang="en">
+
+<head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{%static 'css/style.css'%}">
+
+</head>
+
+<body>
+        <form method="POST" action="/addbook" enctype="multipart/form-data">
+                
+                {%if messages%}
+                        {%for i in messages%}
+                            <h6 class="{{i.tags}}">{{i}}</h6>
+                        {%endfor%}
+                    {%endif%}
+                {%csrf_token%}
+                
+                <table border="1" class="table table-striped">
+                        <tr>
+                                <td colspan="2" style="text-align: center;">
+                                        <h3>Add New Book</h3>
+                                </td>
+                        </tr>
+                        <tr>
+                                <td align="right" style="padding-left: 220px;">
+                                        <h5>Book ID:</h5>
+                                </td>
+                                <td><input type="text" name="bookid" placeholder="Book ID" required></td>
+                        </tr>
+                        <tr>
+                                <td align="right">
+                                        <h5>Book Name:</h5>
+                                </td>
+                                <td><input type="text" name="bookname" placeholder="Book Name" required></td>
+                        </tr>
+                        <tr>
+                                <td align="right">
+                                        <h5>Author Name:</h5>
+                                </td>
+                                <td><input type="text" name="bookauthor" placeholder="Author Name" required></td>
+                        </tr>
+                        <tr>
+                            <td align="right">
+                                    <h5>Publish Date:</h5>
+                            </td>
+                            <td><input type="date" name="publishdate" placeholder="Publish Date" required></td>
+                    </tr>
+                    <tr>
+                        <td align="right">
+                                <h5>Book Description:</h5>
+                        </td>
+                        <td><textarea name="bookdescription" placeholder="Description"></textarea></td>
+                </tr>
+                        
+                        <tr>
+                                <td align="right">
+                                        <h5>Book Image:</h5>
+                                </td>
+                                <td><input type="file" accept="image/*" name="bookimage" /></td>
+                        </tr>
+                        <tr>
+                                <td align="right"></td>
+
+                                <td><input type="submit" value="Save" class="btn btn-primary">
+                                    <input type="reset" value="Clear" class="btn btn-secondary">
+                                </td>
+                        </tr>
+                </table>
+        </form>
+
+
+</body>
+
+</html>

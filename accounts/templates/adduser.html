@@ -1,0 +1,117 @@
+
+{%load static%}
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="{%static 'css/style.css'%}">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+</head>
+<style>
+    @media (min-width: 1025px) {
+        .h-custom-2 {
+            height: 100%;
+        }
+    }
+
+    .error {
+        color: red;
+    }
+
+    .success {
+        color: green;
+    }
+
+    .info {
+        color: blue;
+    }
+</style>
+<body>
+    <nav class="navbar navbar-light bg-light">
+        <div class="container-fluid">
+          <span class="navbar-brand mb-0 h1">Books Library</span>
+          
+        </div>
+      </nav>
+    <form method="POST" action="/adduser" enctype="multipart/form-data">
+        {%csrf_token%}
+        {%if messages%}
+        {%for i in messages%}
+        <h6 class="{{i.tags}}">{{i}}</h6>
+        {%endfor%}
+        {%endif%}
+        <table border="1" cellspacing="10" class="table table-striped">
+            <tr>
+                <td colspan=2 align="center"><h3>Registration Page</h3></td>
+            </tr>
+            
+            
+                <td><label>Username: </label></td>
+                <td><input type="text" name="username" placeholder="username" required></td>
+            </tr>
+            <tr>
+                <td><label>First Name: </label></td>
+                <td><input type="text" name="first_name" placeholder="first_name" required></td>
+            </tr>
+            <tr>
+                <td><label>Last Name: </label></td>
+                <td><input type="text" name="last_name" placeholder="last_name" required></td>
+            </tr>            
+            
+            <tr>
+                <td><label>Email: </label></td>
+                <td><input type="text" name="email" placeholder="email" required></td>
+            </tr>
+            <tr>
+                <td><label>Contact: </label></td>
+                <td><input type="number" name="contact" placeholder="contact" required></td>
+            </tr>
+            <tr>
+                <td><label>Date of Birth: </label></td>
+                <td><input type="date" name="age" placeholder="age" required></td>
+            </tr>
+            <tr>
+                <td><label>Gender:</label></td>
+                <td>
+                    <input type="radio" id="rmale" name="gender" value="Male">
+                    <label for="rmale">Male</label>
+                    <input type="radio" id="rfemale" name="gender" value="Female">
+                    <label for="rfemale">Female</label>
+                    <input type="radio" id="rnm" name="gender" value="Not Mentioned">
+                    <label for="rnm">Not to Mention</label>
+                </td>
+            </tr>
+            <!--
+            <tr>
+                <td><label>Gender: </label></td>
+                <td><input type="text" name="gender" placeholder="gender"></td>
+            </tr>-->
+            <tr>
+                <td><label>Address: </label></td>
+                <td><textarea name="address" placeholder="Address"></textarea></td>
+            </tr>
+            <tr>
+                <td><label>Password: </label></td>
+                <td><input type="password" name="password1" placeholder="Password" required></td>
+            </tr>
+            <tr>
+                <td><label>Confirm Password: </label></td>
+                <td><input type="password" name="password2" placeholder="Confirm Password" required></td>
+            </tr>
+
+            <tr>
+                <td colspan="2" align="center"><input type="submit" value="Save" class="btn-primary"></td>
+            </tr>
+        </table>
+
+    </form>
+</body>
+</html>

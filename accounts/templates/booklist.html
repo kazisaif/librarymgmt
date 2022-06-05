@@ -1,0 +1,62 @@
+{%include 'heading.html'%}
+{%load static%}
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{%static 'css/style.css'%}">
+
+</head>
+
+<body>
+  {%block body%}
+  {%if blist%}
+  <h4 style="text-align: center; margin-top: 10px;">All Books</h4>
+  <table border="1" class="table table-hover table-striped">
+    
+    
+    <tr>
+      <thead class="table-secondary" style="text-align: center;">
+      <th>SR. No.</th>
+      <th>Book Id</th>
+      <th>Book Name</th>
+      <th>Author Name</th>
+      <th>Book Publish Date</th>
+      <th>Book Description</th>
+      <th>Book Image</th>
+
+      <th colspan="2">Action</th>
+    </thead>
+    </tr>
+
+
+ 
+    {%for i in blist%}
+
+    <tr>
+      <td>{{forloop.counter}}</td>
+      <td>{{i.bookid}}</td>
+      <td>{{i.bookname}}</td>
+      <td>{{i.book_author}}</td>
+      <td>{{i.publish_date}}</td>
+      <td>{{i.book_description}}</td>
+      <td>{{i.book_image}}</td>
+
+      <td><a href="editbook/{{i.id}}">Edit</a></td>
+      <td><a href="deletebook/{{i.id}}">Delete</a></td>
+    </tr>
+    {%endfor%}
+</table>
+
+
+
+{%else%}
+<h3 align="center">No Book Available...</h3>
+{%endif%}
+{%endblock%}
+</body>
+
+</html>
